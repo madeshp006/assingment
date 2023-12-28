@@ -1,0 +1,66 @@
+#include <stdio.h>
+int main() {
+  int arr[100],n,i,ch,position,element;
+
+  printf("Enter the size of the array:");
+  scanf("%d",&n);
+
+  for (i=0;i<n;i++) {
+    printf("Enter element %d: ",i+1);
+    scanf("%d", &arr[i]);
+  }
+
+  printf("\n");
+
+  while (1) {
+    printf("Enter your choice:\n");
+    printf("1. Insert\n");
+    printf("2. Delete\n");
+    printf("3. Display\n");
+    scanf("%d",&ch);
+
+    switch (ch) {
+      case 1:
+        printf("Enter the element:");
+        scanf("%d",&element);
+        printf("Enter the position:");
+        scanf("%d",&position);
+
+        if (position<0||position>n) 
+		{
+          printf("Invalid position.\n");
+        } else {
+          for (i=n-1;i>=position;i--) {
+            arr[i+1]=arr[i];
+          }
+          arr[position]=element;
+          n++;
+        }
+        break;
+
+      case 2:
+        printf("Enter the position of the element to be deleted: ");
+        scanf("%d",&position);
+
+        if (position<0||position>n) {
+          printf("Invalid position.\n");
+        } else {
+          for (i=position;i<n-1;i++) {
+            arr[i]=arr[i+1];
+          }
+          n--;
+        }
+        break;
+      case 3:
+        printf("The array is: ");
+        for (i=0;i<n;i++) {
+          printf("%d ",arr[i]);
+        }
+        printf("\n");
+        break;
+      default:
+        printf("Invalid choice.\n");
+    }
+  }
+  return 0;
+}
