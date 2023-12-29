@@ -1,0 +1,80 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define size 10
+void enqueue(int);
+void dequeue();
+void display();
+int queue[size],front=-1,rear=-1;
+int main()
+{
+    int value,choice=0;
+    while(1)
+    {
+        printf("\nMain manu\n");
+        printf("1.enqueue\n2.dequeue\n3.display\n4.exit\n");
+        printf("Enter your choice:");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            printf("Enter the element to be insert:");
+            scanf("%d",&value);
+            enqueue(value);
+            break;
+            case 2:
+            dequeue();
+            break;
+            case 3:
+            display();
+            break;
+            case 4:
+            exit(0);
+            break;
+            default:
+            printf("Enter your invalid choice\n");
+        }
+    }
+}
+void enqueue(int value)
+{
+    if(rear==size-1)
+    {
+        printf("queue is full\n");
+    }
+    else
+    {
+        if(front==-1)
+            front=0;
+            rear++;
+            queue[rear]=value;
+            printf("insertion success!\n");
+    }
+}
+void dequeue()
+{
+    if(front==rear)
+    {
+        printf("The queue was empty\n");
+    }
+    else
+    {
+        printf("%d deletion is success",queue[front]);
+        front++;
+        if(front==rear)
+        front=rear=-1;
+    }
+}
+void display()
+{
+    if(rear==-1)
+    {
+        printf("The queue was empty!\n");
+    }
+    else
+    {
+        int i;
+        printf("The queue elements are\n");
+        for(i=front;i<=rear;i++)
+        printf("%d ",queue[i]);
+    }
+}
